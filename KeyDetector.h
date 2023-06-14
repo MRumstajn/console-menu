@@ -5,6 +5,6 @@ typedef void (*CallbackFunction)();
 
 void registerKeyCallback(char key, CallbackFunction callback);
 
-void debugTest();
+void startKeyListener();
 
 #endif

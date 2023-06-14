@@ -24,7 +24,7 @@ void aKeyCallback() {
 
 int main() {
 	registerKeyCallback('a', aKeyCallback);
-	debugTest();
+	startKeyListener();
 
 	return 0;
 }

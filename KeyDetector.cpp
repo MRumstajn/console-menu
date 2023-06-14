@@ -1,8 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <windows.h>
+#include <conio.h>
 #include "KeyDetector.h"
-#include <string>
 
 using namespace std;
 
@@ -23,10 +24,16 @@ void registerKeyCallback(char key, CallbackFunction callbackFunc) {
     }
 }
 
-void debugTest(){
-    for (auto key : callbacks) {
-        for (auto callback : key.second) {
-            (*callback)();
+void startKeyListener() {
+    for (;;) {
+        if (kbhit()) {
+            char pressedKey = getch();
+            auto pos = callbacks.find(pressedKey);
+            if (pos != callbacks.end()) {
+                for (CallbackFunction callback : pos -> second) {
+                    (*callback)();
+                }
+            }
         }
     }
 }
