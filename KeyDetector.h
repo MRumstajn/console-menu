@@ -3,7 +3,7 @@
 
 typedef void (*CallbackFunction)();
 
-void registerKeyCallback(char key, CallbackFunction callback);
+void registerKeyCallback(int keyCode, CallbackFunction callback);
 
 void startKeyListener();
 

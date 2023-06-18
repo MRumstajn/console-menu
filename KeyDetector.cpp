@@ -7,11 +7,11 @@
 
 using namespace std;
 
-map<char, vector<CallbackFunction>> callbacks;
+map<int, vector<CallbackFunction>> callbacks;
 
-void registerKeyCallback(char key, CallbackFunction callbackFunc) {
-    if (callbacks.count(key)) {
-        auto pos = callbacks.find(key);
+void registerKeyCallback(int keyCode, CallbackFunction callbackFunc) {
+    if (callbacks.count(keyCode)) {
+        auto pos = callbacks.find(keyCode);
         if (pos != callbacks.end()) {
             vector<CallbackFunction> &functions = pos ->second;
             functions.push_back(callbackFunc);
@@ -20,7 +20,7 @@ void registerKeyCallback(char key, CallbackFunction callbackFunc) {
         vector<CallbackFunction> newCallbackVector;
         newCallbackVector.push_back(callbackFunc);
 
-        callbacks.insert(pair<char, vector<CallbackFunction>>(key, newCallbackVector));
+        callbacks.insert(pair<char, vector<CallbackFunction>>(keyCode, newCallbackVector));
     }
 }
 
@@ -28,7 +28,7 @@ void startKeyListener() {
     for (;;) {
         if (kbhit()) {
             char pressedKey = getch();
-            auto pos = callbacks.find(pressedKey);
+            auto pos = callbacks.find((int) pressedKey);
             if (pos != callbacks.end()) {
                 for (CallbackFunction callback : pos -> second) {
                     (*callback)();

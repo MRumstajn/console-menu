@@ -1,4 +1,5 @@
 #include <iostream>
+#include <windows.h>
 #include "KeyDetector.h"
 #include "MenuRegistry.h"
 #include "MenuRenderer.h"
@@ -30,15 +31,21 @@ void sKeyCallback() {
 	renderMenu(getAllMenuItems(), getSelectedMenuItemIndex(), 8);
 }
 
+void enterKeyCallback() {
+	cout << "chosen option: " << getMenuItemAt(getSelectedMenuItemIndex()) << endl;
+}
+
 int main() {
-	cout << "current item: " + getMenuItemAt(0) << endl;
-	
 	registerMenuItem("home");
 	registerMenuItem("settings");
 	registerMenuItem("exit");
 	
 	registerKeyCallback('w', wKeyCallback);
 	registerKeyCallback('s', sKeyCallback);
+	registerKeyCallback(VK_RETURN, enterKeyCallback);
+
+	renderMenu(getAllMenuItems(), getSelectedMenuItemIndex(), 8);
+
 	startKeyListener();
 	
 	return 0;
