@@ -49,11 +49,12 @@ void registerMenuItem(string item, CallbackFunction callbackFunction) {
 }
 
 void showMenu() {
-    registerKeyCallback('w', wKeyCallback);
-	registerKeyCallback('s', sKeyCallback);
-	registerKeyCallback(VK_RETURN, enterKeyCallback);
+    KeyDetector keyDetector;
+    keyDetector.registerKeyCallback('w', wKeyCallback);
+	keyDetector.registerKeyCallback('s', sKeyCallback);
+	keyDetector.registerKeyCallback(VK_RETURN, enterKeyCallback);
 
 	renderMenu(getAllMenuItems(), getSelectedMenuItemIndex(), 8);
 
-	startKeyListener();
+	keyDetector.startKeyListener();
 }

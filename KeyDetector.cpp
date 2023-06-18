@@ -7,9 +7,7 @@
 
 using namespace std;
 
-map<int, vector<CallbackFunction>> callbacks;
-
-void registerKeyCallback(int keyCode, CallbackFunction callbackFunc) {
+void KeyDetector::registerKeyCallback(int keyCode, CallbackFunction callbackFunc) {
     if (callbacks.count(keyCode)) {
         auto pos = callbacks.find(keyCode);
         if (pos != callbacks.end()) {
@@ -24,7 +22,7 @@ void registerKeyCallback(int keyCode, CallbackFunction callbackFunc) {
     }
 }
 
-void startKeyListener() {
+void KeyDetector::startKeyListener() {
     for (;;) {
         if (kbhit()) {
             char pressedKey = getch();
