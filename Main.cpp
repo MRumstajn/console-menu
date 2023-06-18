@@ -1,5 +1,6 @@
 #include <iostream>
 #include "KeyDetector.h"
+#include "MenuRegistry.h"
 
 using namespace std;
 
@@ -18,13 +19,24 @@ using namespace std;
 		- controller
 */
 
-void aKeyCallback() {
-	cout << "a is pressed! " << endl;
+void wKeyCallback() {
+	cout << "current item: " << getMenuItem(Direction::NEXT) << endl;;
+}
+
+void sKeyCallback() {
+	cout << "current item: " << getMenuItem(Direction::PREVIOUS) << endl;
 }
 
 int main() {
-	registerKeyCallback('a', aKeyCallback);
+	cout << "current item: " + getMenuItemAt(0) << endl;
+	
+	registerMenuItem("home");
+	registerMenuItem("settings");
+	registerMenuItem("exit");
+	
+	registerKeyCallback('w', wKeyCallback);
+	registerKeyCallback('s', sKeyCallback);
 	startKeyListener();
-
+	
 	return 0;
 }
