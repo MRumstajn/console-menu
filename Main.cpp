@@ -1,8 +1,6 @@
 #include <iostream>
 #include <windows.h>
-#include "KeyDetector.h"
-#include "MenuRegistry.h"
-#include "MenuRenderer.h"
+#include "Menu.h"
 
 using namespace std;
 
@@ -21,32 +19,24 @@ using namespace std;
 		- controller
 */
 
-void wKeyCallback() {
-	moveToMenuItem(Direction::PREVIOUS);
-	renderMenu(getAllMenuItems(), getSelectedMenuItemIndex(), 8);
+void onHomeItemSelected() {
+	cout << "Home item selected" << endl;
 }
 
-void sKeyCallback() {
-	moveToMenuItem(Direction::NEXT);
-	renderMenu(getAllMenuItems(), getSelectedMenuItemIndex(), 8);
+void onSettingsItemSelected() {
+	cout << "Settings item selected" << endl;
 }
 
-void enterKeyCallback() {
-	cout << "chosen option: " << getMenuItemAt(getSelectedMenuItemIndex()) << endl;
+void onExitItemSelected() {
+	cout << "Exit item selected" << endl;
 }
 
 int main() {
-	registerMenuItem("home");
-	registerMenuItem("settings");
-	registerMenuItem("exit");
 	
-	registerKeyCallback('w', wKeyCallback);
-	registerKeyCallback('s', sKeyCallback);
-	registerKeyCallback(VK_RETURN, enterKeyCallback);
+	registerMenuItem("home", onHomeItemSelected);
+	registerMenuItem("settings", onSettingsItemSelected);
+	registerMenuItem("exit", onExitItemSelected);
+	showMenu();
 
-	renderMenu(getAllMenuItems(), getSelectedMenuItemIndex(), 8);
-
-	startKeyListener();
-	
 	return 0;
 }
