@@ -1,6 +1,7 @@
 #include <iostream>
 #include "KeyDetector.h"
 #include "MenuRegistry.h"
+#include "MenuRenderer.h"
 
 using namespace std;
 
@@ -20,11 +21,13 @@ using namespace std;
 */
 
 void wKeyCallback() {
-	cout << "current item: " << getMenuItem(Direction::NEXT) << endl;;
+	moveToMenuItem(Direction::PREVIOUS);
+	renderMenu(getAllMenuItems(), getSelectedMenuItemIndex(), 8);
 }
 
 void sKeyCallback() {
-	cout << "current item: " << getMenuItem(Direction::PREVIOUS) << endl;
+	moveToMenuItem(Direction::NEXT);
+	renderMenu(getAllMenuItems(), getSelectedMenuItemIndex(), 8);
 }
 
 int main() {

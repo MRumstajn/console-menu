@@ -11,7 +11,7 @@ void registerMenuItem(string name) {
     menuItems.push_back(name);
 }
 
-string getMenuItem(Direction dir) {
+string moveToMenuItem(Direction dir) {
     if (dir == Direction::NEXT) {
         if (currentItemIndex < menuItems.size() - 1) {
             currentItemIndex += 1;
@@ -36,4 +36,12 @@ string getMenuItemAt(int index) {
     }
 
     return menuItems[index];
+}
+
+vector<string> getAllMenuItems() {
+    return menuItems;
+}
+
+int getSelectedMenuItemIndex() {
+    return currentItemIndex;
 }

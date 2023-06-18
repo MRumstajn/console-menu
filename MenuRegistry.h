@@ -2,6 +2,7 @@
 #define MENU_REGISTRY_INCLUDE
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -14,6 +15,10 @@ void registerMenuItem(std::string name);
 
 string getMenuItemAt(int index);
 
-string getMenuItem(Direction dir);
+string moveToMenuItem(Direction dir);
+
+vector<string> getAllMenuItems();
+
+int getSelectedMenuItemIndex();
 
 #endif
