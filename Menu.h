@@ -1,11 +1,22 @@
 #ifndef MENU_INCLUDE
 #define MENU_INCLUDE
 
+#include "MenuRegistry.h"
 #include "KeyDetector.h"
 #include <iostream>
 
-void registerMenuItem(std::string, CallbackFunction callbackFunction);
+class Menu {
+private:
+    MenuRegistry menuRegistry;
+    std::map<std::string, std::vector<CallbackFunction>> itemCallbacks;
 
-void showMenu();
+public:
+    void registerMenuItem(std::string, CallbackFunction callbackFunction);
+    void showMenu();
+    void moveToNextItem();
+    void moveToPreviousItem();
+    void callCallbacksForSelectedItem();
+    std::string getSelectedItem();
+};
 
 #endif

@@ -4,14 +4,11 @@
 
 using namespace std;
 
-vector<string> menuItems;
-int currentItemIndex = 0;
-
-void registerMenuItem(string name) {
+void MenuRegistry::registerMenuItem(string name) {
     menuItems.push_back(name);
 }
 
-string moveToMenuItem(Direction dir) {
+string MenuRegistry::moveToMenuItem(Direction dir) {
     if (dir == Direction::NEXT) {
         if (currentItemIndex < menuItems.size() - 1) {
             currentItemIndex += 1;
@@ -30,7 +27,7 @@ string moveToMenuItem(Direction dir) {
     return item;
 }
 
-string getMenuItemAt(int index) {
+string MenuRegistry::getMenuItemAt(int index) {
     if (index < 0 || index >= menuItems.size() || menuItems.size() == 0) {
         return string();
     }
@@ -38,10 +35,10 @@ string getMenuItemAt(int index) {
     return menuItems[index];
 }
 
-vector<string> getAllMenuItems() {
+vector<string> MenuRegistry::getAllMenuItems() {
     return menuItems;
 }
 
-int getSelectedMenuItemIndex() {
+int MenuRegistry::getSelectedMenuItemIndex() {
     return currentItemIndex;
 }

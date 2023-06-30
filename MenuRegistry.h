@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <map>
 
 using namespace std;
 
@@ -11,14 +12,16 @@ enum Direction {
     PREVIOUS
 };
 
-void registerMenuItem(std::string name);
-
-string getMenuItemAt(int index);
-
-string moveToMenuItem(Direction dir);
-
-vector<string> getAllMenuItems();
-
-int getSelectedMenuItemIndex();
+class MenuRegistry {
+private:
+    std::vector<string> menuItems;
+    int currentItemIndex;
+public:
+    void registerMenuItem(std::string name);
+    string getMenuItemAt(int index);
+    string moveToMenuItem(Direction dir);
+    vector<string> getAllMenuItems();
+    int getSelectedMenuItemIndex();
+};
 
 #endif

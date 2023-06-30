@@ -1,38 +1,29 @@
 #include "Menu.h"
 #include "MenuRegistry.h"
 #include "MenuRenderer.h"
+#include "KeyDetector.h"
 #include <map>
 #include <iostream>
 #include <windows.h>
 
 using namespace std;
 
-map<string, vector<CallbackFunction>> itemCallbacks;
-
-void wKeyCallback() {
-    moveToMenuItem(Direction::PREVIOUS);
-	renderMenu(getAllMenuItems(), getSelectedMenuItemIndex(), 8);
+void Menu::moveToNextItem() {
+    menuRegistry.moveToMenuItem(Direction::NEXT);
+	renderMenu(menuRegistry.getAllMenuItems(), menuRegistry.getSelectedMenuItemIndex(), 8);
 }
 
-void sKeyCallback() {
-    moveToMenuItem(Direction::NEXT);
-	renderMenu(getAllMenuItems(), getSelectedMenuItemIndex(), 8);
+void Menu::moveToPreviousItem() {
+    menuRegistry.moveToMenuItem(Direction::PREVIOUS);
+	renderMenu(menuRegistry.getAllMenuItems(), menuRegistry.getSelectedMenuItemIndex(), 8); 
 }
 
-void enterKeyCallback() {
-    string selectedItem = getMenuItemAt(getSelectedMenuItemIndex());
-
-    auto pos = itemCallbacks.find(selectedItem);
-    if (pos != itemCallbacks.end()) {
-        vector<CallbackFunction> functions = pos -> second;
-        for (CallbackFunction func : functions) {
-            (*func)();
-        }
-    }
+string Menu::getSelectedItem() {
+    return menuRegistry.getAllMenuItems().at(menuRegistry.getSelectedMenuItemIndex());    
 }
 
-void registerMenuItem(string item, CallbackFunction callbackFunction) {
-    registerMenuItem(item);
+void Menu::registerMenuItem(string item, CallbackFunction callbackFunction) {
+    menuRegistry.registerMenuItem(item);
 
     if (itemCallbacks.count(item)) {
         auto pos = itemCallbacks.find(item);
@@ -48,13 +39,16 @@ void registerMenuItem(string item, CallbackFunction callbackFunction) {
     }
 }
 
-void showMenu() {
-    KeyDetector keyDetector;
-    keyDetector.registerKeyCallback('w', wKeyCallback);
-	keyDetector.registerKeyCallback('s', sKeyCallback);
-	keyDetector.registerKeyCallback(VK_RETURN, enterKeyCallback);
+void Menu::showMenu() {
+	renderMenu(menuRegistry.getAllMenuItems(), menuRegistry.getSelectedMenuItemIndex(), 8);
+}
 
-	renderMenu(getAllMenuItems(), getSelectedMenuItemIndex(), 8);
-
-	keyDetector.startKeyListener();
+void Menu::callCallbacksForSelectedItem() {
+    auto pos = itemCallbacks.find(getSelectedItem());
+    if (pos != itemCallbacks.end()) {
+        vector<CallbackFunction> functions = pos -> second;
+        for (CallbackFunction func : functions) {
+            (*func)();
+        }
+    }
 }

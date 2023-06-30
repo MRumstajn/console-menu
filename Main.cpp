@@ -1,6 +1,6 @@
 #include <iostream>
 #include <windows.h>
-#include "Menu.h"
+#include "MenuBootstrap.h"
 
 using namespace std;
 
@@ -29,14 +29,14 @@ void onSettingsItemSelected() {
 
 void onExitItemSelected() {
 	cout << "Exit item selected" << endl;
+	hideSimpleMenu();
 }
 
 int main() {
-	
-	registerMenuItem("home", onHomeItemSelected);
-	registerMenuItem("settings", onSettingsItemSelected);
-	registerMenuItem("exit", onExitItemSelected);
-	showMenu();
+	registerMenuItem("Home", onHomeItemSelected);
+	registerMenuItem("Settings", onSettingsItemSelected);
+	registerMenuItem("Exit", onExitItemSelected);
+	showSimpleMenu();
 
 	return 0;
 }
