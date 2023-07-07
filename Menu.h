@@ -2,12 +2,14 @@
 #define MENU_INCLUDE
 
 #include "MenuRegistry.h"
+#include "MenuRenderer.h"
 #include "KeyDetector.h"
 #include <iostream>
 
 class Menu {
 private:
     MenuRegistry menuRegistry;
+    MenuRenderer renderer;
     std::map<std::string, std::vector<CallbackFunction>> itemCallbacks;
 
 public:

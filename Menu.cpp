@@ -10,12 +10,12 @@ using namespace std;
 
 void Menu::moveToNextItem() {
     menuRegistry.moveToMenuItem(Direction::NEXT);
-	renderMenu(menuRegistry.getAllMenuItems(), menuRegistry.getSelectedMenuItemIndex(), 8);
+	renderer.renderMenu(menuRegistry.getAllMenuItems(), menuRegistry.getSelectedMenuItemIndex(), 8);
 }
 
 void Menu::moveToPreviousItem() {
     menuRegistry.moveToMenuItem(Direction::PREVIOUS);
-	renderMenu(menuRegistry.getAllMenuItems(), menuRegistry.getSelectedMenuItemIndex(), 8); 
+	renderer.renderMenu(menuRegistry.getAllMenuItems(), menuRegistry.getSelectedMenuItemIndex(), 8); 
 }
 
 string Menu::getSelectedItem() {
@@ -40,7 +40,7 @@ void Menu::registerMenuItem(string item, CallbackFunction callbackFunction) {
 }
 
 void Menu::showMenu() {
-	renderMenu(menuRegistry.getAllMenuItems(), menuRegistry.getSelectedMenuItemIndex(), 8);
+	renderer.renderMenu(menuRegistry.getAllMenuItems(), menuRegistry.getSelectedMenuItemIndex(), 8);
 }
 
 void Menu::callCallbacksForSelectedItem() {

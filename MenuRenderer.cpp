@@ -31,7 +31,18 @@ string formatSelectedItem(string item, int maxItemWidth) {
     return "-> " + generatePadding((maxItemWidth - item.length())  / 2) + item + generatePadding((maxItemWidth - item.length()) / 2) + " <-";
 }
 
-void renderMenu(vector<string> items, int selectedItemIndex, int maxItemWidth) {
+MenuRenderer::MenuRenderer() {
+    stdOutHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+    if (stdOutHandle == INVALID_HANDLE_VALUE) {
+        cout << "Failed to get terminal window handle" << endl;
+    }
+}
+
+MenuRenderer::~MenuRenderer() {
+    CloseHandle(stdOutHandle);
+}
+
+void MenuRenderer::renderMenu(vector<string> items, int selectedItemIndex, int maxItemWidth) {
     clearScreen();
     for (int i = 0; i < items.size(); i++) {
         string line;
@@ -44,12 +55,7 @@ void renderMenu(vector<string> items, int selectedItemIndex, int maxItemWidth) {
     }
 }
 
-void clearScreen() {
-    stdOutHandle = GetStdHandle(STD_OUTPUT_HANDLE);
-    if (stdOutHandle == INVALID_HANDLE_VALUE) {
-        return;
-    }
-
+void MenuRenderer::clearScreen() {
     if (!GetConsoleScreenBufferInfo(stdOutHandle, &screenBuffer)) {
         return;
     }

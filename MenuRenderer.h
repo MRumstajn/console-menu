@@ -4,8 +4,12 @@
 #include <iostream>
 #include <vector>
 
-void renderMenu(std::vector<std::string> items, int selectedItemIndex, int maxItemWitdh);
-
-void clearScreen();
+class MenuRenderer {
+public:
+    MenuRenderer();
+    ~MenuRenderer();
+    void renderMenu(std::vector<std::string> items, int selectedItemIndex, int maxItemWitdh);
+    void clearScreen();
+};
 
 #endif

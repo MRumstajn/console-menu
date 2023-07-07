@@ -6,11 +6,11 @@ Menu menu;
 KeyDetector keyDetector;
 
 void wKeyCallback () {
-    menu.moveToNextItem();
+    menu.moveToPreviousItem();
 }
 
 void sKeyCallback () {
-    menu.moveToPreviousItem();
+    menu.moveToNextItem();
 }
 
 void enterKeyCallback () {
@@ -18,6 +18,8 @@ void enterKeyCallback () {
 }
 
 void showSimpleMenu() {
+    menu.showMenu();
+    
     keyDetector.registerKeyCallback('w', wKeyCallback);
 	keyDetector.registerKeyCallback('s', sKeyCallback);
 	keyDetector.registerKeyCallback(VK_RETURN, enterKeyCallback);
