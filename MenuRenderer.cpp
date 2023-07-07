@@ -31,6 +31,26 @@ string formatSelectedItem(string item, int maxItemWidth) {
     return "-> " + generatePadding((maxItemWidth - item.length())  / 2) + item + generatePadding((maxItemWidth - item.length()) / 2) + " <-";
 }
 
+string centerLineWithPadding(string line, int consoleWidth) {
+    int paddingAmount = consoleWidth - line.length();
+    return generatePadding(paddingAmount / 2) + line + generatePadding(paddingAmount / 2);
+}
+
+int getConsoleWidth() {
+    int width;
+
+    if (stdout == INVALID_HANDLE_VALUE) {
+        width = -1;
+    }
+
+    if (!GetConsoleScreenBufferInfo(stdOutHandle, &screenBuffer)) {
+        width = -1;
+    }
+
+    width = screenBuffer.dwSize.X;
+    return width;
+}
+
 MenuRenderer::MenuRenderer() {
     stdOutHandle = GetStdHandle(STD_OUTPUT_HANDLE);
     if (stdOutHandle == INVALID_HANDLE_VALUE) {
@@ -42,7 +62,10 @@ MenuRenderer::~MenuRenderer() {
     CloseHandle(stdOutHandle);
 }
 
-void MenuRenderer::renderMenu(vector<string> items, int selectedItemIndex, int maxItemWidth) {
+void MenuRenderer::renderMenu(vector<string> items, 
+                                int selectedItemIndex, 
+                                int maxItemWidth, 
+                                MenuAlignment alignment) {
     clearScreen();
     for (int i = 0; i < items.size(); i++) {
         string line;
@@ -51,7 +74,15 @@ void MenuRenderer::renderMenu(vector<string> items, int selectedItemIndex, int m
         } else {
             line = formatNonSelectedItem(items[i], maxItemWidth);
         }
-        cout << line << endl;
+
+        if (alignment == MenuAlignment::CENTER) {
+            int consoleWidth = getConsoleWidth();
+            if (consoleWidth != -1) {
+                line = centerLineWithPadding(line, consoleWidth);
+            }
+        }
+
+         cout << line << endl;
     }
 }
 

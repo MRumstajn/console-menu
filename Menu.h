@@ -10,14 +10,17 @@ class Menu {
 private:
     MenuRegistry menuRegistry;
     MenuRenderer renderer;
+    MenuAlignment alignment;
     std::map<std::string, std::vector<CallbackFunction>> itemCallbacks;
 
 public:
+    Menu(MenuAlignment alignment);
     void registerMenuItem(std::string, CallbackFunction callbackFunction);
     void showMenu();
     void moveToNextItem();
     void moveToPreviousItem();
     void callCallbacksForSelectedItem();
+    void setAlignment(MenuAlignment alignment);
     std::string getSelectedItem();
 };
 

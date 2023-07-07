@@ -1,6 +1,7 @@
 #include <iostream>
 #include <windows.h>
 #include "MenuBootstrap.h"
+#include "Menu.h"
 
 using namespace std;
 
@@ -36,6 +37,7 @@ int main() {
 	registerMenuItem("Home", onHomeItemSelected);
 	registerMenuItem("Settings", onSettingsItemSelected);
 	registerMenuItem("Exit", onExitItemSelected);
+	setAlignment(MenuAlignment::CENTER);
 	showSimpleMenu();
 
 	return 0;

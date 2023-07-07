@@ -8,14 +8,18 @@
 
 using namespace std;
 
+Menu::Menu(MenuAlignment alignment) {
+    setAlignment(alignment);
+} 
+
 void Menu::moveToNextItem() {
     menuRegistry.moveToMenuItem(Direction::NEXT);
-	renderer.renderMenu(menuRegistry.getAllMenuItems(), menuRegistry.getSelectedMenuItemIndex(), 8);
+	renderer.renderMenu(menuRegistry.getAllMenuItems(), menuRegistry.getSelectedMenuItemIndex(), 8, alignment);
 }
 
 void Menu::moveToPreviousItem() {
     menuRegistry.moveToMenuItem(Direction::PREVIOUS);
-	renderer.renderMenu(menuRegistry.getAllMenuItems(), menuRegistry.getSelectedMenuItemIndex(), 8); 
+	renderer.renderMenu(menuRegistry.getAllMenuItems(), menuRegistry.getSelectedMenuItemIndex(), 8, alignment); 
 }
 
 string Menu::getSelectedItem() {
@@ -40,7 +44,7 @@ void Menu::registerMenuItem(string item, CallbackFunction callbackFunction) {
 }
 
 void Menu::showMenu() {
-	renderer.renderMenu(menuRegistry.getAllMenuItems(), menuRegistry.getSelectedMenuItemIndex(), 8);
+	renderer.renderMenu(menuRegistry.getAllMenuItems(), menuRegistry.getSelectedMenuItemIndex(), 8, alignment);
 }
 
 void Menu::callCallbacksForSelectedItem() {
@@ -51,4 +55,8 @@ void Menu::callCallbacksForSelectedItem() {
             (*func)();
         }
     }
+}
+
+void Menu::setAlignment(MenuAlignment alignment) {
+    this->alignment = alignment;
 }

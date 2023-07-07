@@ -2,7 +2,7 @@
 #include "Menu.h"
 #include "windows.h"
 
-Menu menu;
+Menu menu(MenuAlignment::SIDE);
 KeyDetector keyDetector;
 
 void wKeyCallback () {
@@ -32,4 +32,8 @@ void hideSimpleMenu() {
 
 void registerMenuItem(std::string item, CallbackFunction callback) {
     menu.registerMenuItem(item, callback);
+}
+
+void setAlignment(MenuAlignment alignment) {
+    menu.setAlignment(alignment);
 }

@@ -3,9 +3,11 @@
 
 #include <iostream>
 #include "KeyDetector.h"
+#include "MenuRenderer.h"
 
 void showSimpleMenu();
 void hideSimpleMenu();
 void registerMenuItem(std::string, CallbackFunction callbackFunction);
+void setAlignment(MenuAlignment alignment);
 
 #endif
