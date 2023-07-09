@@ -1,8 +1,17 @@
+
+
 #ifndef MENU_RENDERER_INCLUDE
 #define MENU_RENDERER_INCLUDE
 
 #include <iostream>
 #include <vector>
+
+struct MenuItemSelectionConfig {
+    std::string defaultSymbolLeft;
+    std::string defaultSymbolRight;
+    std::string selectedSymbolLeft;
+    std::string selectedSymbolRight;
+};
 
 enum MenuAlignment {
     SIDE,
@@ -10,6 +19,8 @@ enum MenuAlignment {
 };
 
 class MenuRenderer {
+private:
+    struct MenuItemSelectionConfig *selectionConfig;
 public:
     MenuRenderer();
     ~MenuRenderer();
@@ -18,6 +29,7 @@ public:
                     int maxItemWitdh, 
                     MenuAlignment alignment);
     void clearScreen();
+    void setSelectionConfig(MenuItemSelectionConfig *config);
 };
 
 #endif

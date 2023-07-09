@@ -9,5 +9,6 @@ void showSimpleMenu();
 void hideSimpleMenu();
 void registerMenuItem(std::string, CallbackFunction callbackFunction);
 void setAlignment(MenuAlignment alignment);
+void setSelectionConfig(MenuItemSelectionConfig *config);
 
 #endif

@@ -37,3 +37,7 @@ void registerMenuItem(std::string item, CallbackFunction callback) {
 void setAlignment(MenuAlignment alignment) {
     menu.setAlignment(alignment);
 }
+
+void setSelectionConfig(MenuItemSelectionConfig *config) {
+    menu.setSelectionConfig(config);
+}

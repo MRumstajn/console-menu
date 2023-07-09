@@ -60,3 +60,7 @@ void Menu::callCallbacksForSelectedItem() {
 void Menu::setAlignment(MenuAlignment alignment) {
     this->alignment = alignment;
 }
+
+void Menu::setSelectionConfig(MenuItemSelectionConfig *config) {
+    this->renderer.setSelectionConfig(config);
+}

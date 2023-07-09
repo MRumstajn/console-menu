@@ -8,14 +8,23 @@ using namespace std;
 /*
 	Program structure:
 
-	Controls
+	KeyDetector
 		- detecting keys
 		- registering callback
 		- calling callback when key is pressed
 
-	GUI
+	MenuRegistry
+		-	used to register and switch between items
+
+	Menu
+		- wrapper that sets up menu registry and renderer
+
+	MenuRenderer
 		- draws to the screen
 
+	MenuBootstrap
+		- wraps menu and provides basic controls using w and s keys
+		
 	Main
 		- controller
 */
@@ -34,11 +43,21 @@ void onExitItemSelected() {
 }
 
 int main() {
+	struct MenuItemSelectionConfig *config = new MenuItemSelectionConfig{
+		"( ",
+		" )",
+		"-> ( ",
+		" ) <-"
+	};
+
 	registerMenuItem("Home", onHomeItemSelected);
 	registerMenuItem("Settings", onSettingsItemSelected);
 	registerMenuItem("Exit", onExitItemSelected);
 	setAlignment(MenuAlignment::CENTER);
+	setSelectionConfig(config);
 	showSimpleMenu();
-
+	
+	delete config;
+	
 	return 0;
 }

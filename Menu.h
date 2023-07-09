@@ -21,6 +21,7 @@ public:
     void moveToPreviousItem();
     void callCallbacksForSelectedItem();
     void setAlignment(MenuAlignment alignment);
+    void setSelectionConfig(MenuItemSelectionConfig *config);
     std::string getSelectedItem();
 };
 
