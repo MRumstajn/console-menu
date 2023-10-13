@@ -71,6 +71,7 @@ MenuRenderer::MenuRenderer() {
 MenuRenderer::~MenuRenderer() {
     CloseHandle(stdOutHandle);
     delete selectionConfig;
+    selectionConfig = NULL;
 }
 
 void MenuRenderer::renderMenu(vector<string> items, 

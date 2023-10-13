@@ -57,7 +57,5 @@ int main() {
 	setSelectionConfig(config);
 	showSimpleMenu();
 	
-	delete config;
-	
 	return 0;
 }
