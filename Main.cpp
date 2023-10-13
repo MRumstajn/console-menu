@@ -31,6 +31,11 @@ using namespace std;
 
 void onHomeItemSelected() {
 	cout << "Home item selected" << endl;
+	cout << "Input something: ";
+	string msg;
+	cin >> msg;
+
+	redrawSimpleMenu();
 }
 
 void onSettingsItemSelected() {

@@ -6,6 +6,7 @@
 #include "MenuRenderer.h"
 
 void showSimpleMenu();
+void redrawSimpleMenu();
 void hideSimpleMenu();
 void registerMenuItem(std::string, CallbackFunction callbackFunction);
 void setAlignment(MenuAlignment alignment);

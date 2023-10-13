@@ -17,6 +17,7 @@ public:
     Menu(MenuAlignment alignment);
     void registerMenuItem(std::string, CallbackFunction callbackFunction);
     void showMenu();
+    void redrawMenu();
     void moveToNextItem();
     void moveToPreviousItem();
     void callCallbacksForSelectedItem();

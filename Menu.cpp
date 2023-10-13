@@ -47,6 +47,11 @@ void Menu::showMenu() {
 	renderer.renderMenu(menuRegistry.getAllMenuItems(), menuRegistry.getSelectedMenuItemIndex(), 8, alignment);
 }
 
+void Menu::redrawMenu() {
+    renderer.clearScreen();
+    showMenu();
+}
+
 void Menu::callCallbacksForSelectedItem() {
     auto pos = itemCallbacks.find(getSelectedItem());
     if (pos != itemCallbacks.end()) {

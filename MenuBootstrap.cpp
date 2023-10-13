@@ -26,6 +26,10 @@ void showSimpleMenu() {
     keyDetector.startKeyListener();
 }
 
+void redrawSimpleMenu() {
+    menu.redrawMenu();
+}
+
 void hideSimpleMenu() {
     keyDetector.stopKeyListener();
 }
